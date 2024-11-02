@@ -1,0 +1,335 @@
+import numpy as np
+print('Вас привествует программа вычисления скалярного произведения')
+print('двух векторов, имейте ввиду, что массивы используемые для этого')
+print('одинакового размера.')
+a=int(input('Введите размер массива(вектора)\n'))
+mas1=[0]a
+mas2=[0]a
+for i in range(a):
+    mas1[i] = int(input())
+for i in range(a):
+    mas2[i] = int(input())
+
+vtr1 = np.array(mas1)
+
+vtr2= np.array(mas2)
+
+vtr_product = vtr1.dot(vtr2) 
+print("Сколярное произведение векторов = ",vtr_product)
+
+...
+
+try:
+    print('Вас приветствует программа умножение матриц.')
+    print('Когда будете вводить матрицы не забывайте, что')
+    print('умножение происходит только при правильных размерах')
+    print('например A m,n * B n,p = C m,p (первая буква - это количество')
+    print('строк, вторая - это количество столбцов.')
+    a=int(input('Введите количество строк в первой матрице\n'))
+    mas = [] 
+    for i in range(a): 
+        mas.append(list(map(int, input().split())))
+    count=len(mas[0])
+    mas2 = [] 
+    for i in range(count): 
+        mas2.append(list(map(int, input().split())))
+    count2=len(mas2[0])
+    mas3 = [[0] * count2 for i in range(a)]
+    for i in range(a):
+         for j in range(count2):
+             for k in range (count):
+                mas3[i][j]+=mas[i][k]*mas2[k][j]
+except MatrixError:
+    print('Вы ввели матрицы не соответствующие требованиям умножения')
+    exit()
+print('Первая матрица')
+print(mas)
+print('Вторая матрица')
+print(mas2)
+print('Их произведение')
+print(mas3) 
+
+...
+
+a=int(input('Введите размер\n'))
+mas=[0] * a
+for i in range(a):
+    mas[i]=int(input())
+maxx=0
+count=0
+for i in range(a):
+    if mas[i] == 0:
+        count+=1
+        p=i
+    else:
+        if count > maxx:
+            maxx = count
+            count = 0
+            pp=p
+if count > maxx:
+    maxx = count
+    count = 0
+    pp=p
+ind=pp-maxx+1
+print(mas)
+print(maxx)
+print(ind)
+
+...
+
+mas=str(input('Введите строку из слов\n'))
+
+mas1=mas.split()
+l=len(mas1)
+count_znak=0
+count_A=0
+for i in range(l):
+    dopmas=mas1[i]
+    if dopmas.endswith('.') or dopmas.endswith(',') or dopmas.endswith(':') or dopmas.endswith(';') or dopmas.endswith('!') or dopmas.endswith('?'):
+        count_znak+=1
+    if dopmas.istitle() == True:
+        count_A+=1 
+print(mas1)
+print(count_znak)
+print(count_A)
+
+...
+
+a=int(input('Введите размер\n'))
+mas=[0] * a
+for i in range(a):
+    mas[i]=int(input())
+flag_izm = 1
+while flag_izm == 1:
+    flag_izm = 0
+    for i in range(a-1):
+        if mas[i]>mas[i+1]:
+            per = mas [i]
+            mas[i] = mas[i+1]
+            mas[i+1] = per
+            flag_izm = 1
+maxx=0
+maxp=0
+count=1
+pam=mas[i]
+for i in range(a-1):
+    if mas[i] == mas[i+1]:
+        count+=1
+        pam = mas[i]
+    else:
+        if count > maxx:
+            maxx = count
+            count = 1
+            ppam = pam
+if count > maxx:
+    maxx = count
+    count = 1
+    ppam=pam
+flag_izm = 1
+mas.remove(ppam)
+for i in range(a-1-maxx):
+    if mas[i] == mas[i+1]:
+        count+=1
+        pam = mas[i]
+    else:
+        if count > maxp:
+            maxp = count
+            count = 1
+            pppam = pam
+if count > maxp:
+    maxp = count
+    count = 1
+    pppam=pam
+if maxx==maxp:
+    print('Моды нет')
+    exit()
+print(ppam)
+print(maxx)
+
+
+7
+
+# strok = input('Введите строку\n')
+# slov = {}
+# slov = set(strok)
+# print('Различных элементов ', len(slov))
+
+# strok = input('Введите первую строку\n')
+# strok2 = input('Введите вторую строку\n')
+# slov = {}
+# slov2 = {}
+# list1 = []
+# list2 = []
+# slov = set(strok)
+# slov2 = set(strok2)
+# list1 = slov
+# list2 = slov2
+# print(list1-list2)
+
+# strok = input('Введите первую строку\n')
+# strok2 = input('Введите вторую строку\n')
+# slov = {}
+# slov2 = {}
+# list1 = []
+# list2 = []
+# slov = set(strok)
+# slov2 = set(strok2)
+# list1 = slov
+# list2 = slov2
+# if list1-(list1-list2) == set():
+#     print('Одинаковых элементов нет')
+# else:
+#     print(list1-(list1-list2))
+
+# top_list = 'ivanov 25,'
+# list1 = ''
+# bigger_sred = ''
+# dlc_list = []
+# list_max = ''
+# list_min = ''
+# summ = 0
+# maxx = 0
+# minn = 100
+# k = 0
+# while True:
+#     top = str(input('Введите фамилию участника\n'))
+#     scores = str(input('Введите баллы участника\n'))
+#     if top == '':
+#         break
+#     list2 = top + ' ' + scores + ','
+#     top_list = top_list + list2
+#     razdel_top = top_list.split(',')
+#     for i in range(k, (len(razdel_top)-1)):
+#         dlc_list = razdel_top[i].split()
+#         # print('Строчка', dlc_list)
+#         # print('Число', int(dlc_list[1]))
+#         summ += int(dlc_list[1])
+#         k += 1
+#         if int(dlc_list[1]) > maxx:
+#             # name_max = dlc_list[0]
+#             maxx = int(dlc_list[1])
+#         if int(dlc_list[1]) < minn:
+#             # name_min = dlc_list[0]
+#             minn = int(dlc_list[1])
+#         # print('Сумма', summ)
+#         dlc_list = []
+# razdel_top = razdel_top[:-1]
+# sred = summ / len(razdel_top)
+# for i in range(len(razdel_top)):
+#     dlc_list = razdel_top[i].split()
+#     if int(dlc_list[1]) > sred:
+#         bigger_sred = bigger_sred + ' ' + dlc_list[0]
+#     if int(dlc_list[1]) == maxx:
+#         list_max = list_max + ' ' + dlc_list[0]
+#     if int(dlc_list[1]) == minn:
+#         list_min = list_min + ' ' + dlc_list[0]
+# print(razdel_top)
+# print('Средний балл', sred)
+# print('Минимальный балл', minn, list_min)
+# print('Максимальный балл', maxx, list_max)
+# print('Участники у которых больше среднего', bigger_sred)
+
+
+#list_author = {'Пушкин': 'Евгений Онегин\n' 'Повести Белкина\n',
+#                'Достоевский': 'Преступление и наказание\n' 'Униженные и оскорбленные\n',
+#                'Гоголь': 'Вечера на хуторе близь Диканьки\n' 'Нос\n' 'Тарас Бульба\n'}
+# dop = {'Чехов': 'Скрипка Ротшильда\n', 'Куприн': 'Чудесный доктор\n'}
+# list_author.update(dop)
+# key = input('Введите только фамилию автора с заглавной буквы\n')
+# flag_be = 0
+# for i in list_author:
+#     if key == i:
+#         flag_be = 1
+# if flag_be == 1:
+#     print(list_author[key])
+# else:
+#     print('Простите такого автора в списке нет или вы ввели фамилию некорректно')
+
+
+
+# fruit = {'яблоко': 'apple', 'груша': 'pear', 'ананас': 'pineapple',
+#          'Яблоко': 'Apple', 'Груша': 'Pear', 'Ананас': 'Pineapple'}
+# strok = input('Введите название(я) фрукта(ов)\n')
+# translate_rus = strok.split()
+# translate_eng = ''
+# flag_be = 0
+# for i in range(len(translate_rus)):
+#     for key in fruit:
+#         if translate_rus[i] == key:
+#             translate_eng += fruit[key] + ' '
+# print(translate_eng)
+
+
+
+top_list = {'Иванов': 20, "Сидоров": 68,"Петров": 26,"Смирнов": 68}
+# dop_top_list = {"Васичкин": 10, "Козлов": 10, "Дмитриев": 50}
+# top_list.update(dop_top_list)
+# avg = 0
+# for key in top_list:
+#     avg += top_list[key]
+# avg = avg / len(top_list)
+# maxx = top_list['Иванов']
+# minn = top_list['Иванов']
+# for key in top_list:
+#     if top_list[key] > maxx:
+#         maxx = top_list[key]
+# for key in top_list:
+#     if top_list[key] < minn:
+#         minn = top_list[key]
+# print("Максимальный балл")
+# print(maxx)
+# print("Его получил(и)")
+# for key in top_list:
+#     if top_list[key] == maxx:
+#         print(key)
+# print("Минимальный балл")
+# print(minn)
+# print("Его получил(и)")
+# for key in top_list:
+#     if top_list[key] == minn:
+#         print(key)
+# print("Средний балл")
+# print(avg)
+# print("Выше среднего получил(и)")
+# for key in top_list:
+#     if top_list[key] > avg:
+#         print(key)
+
+
+
+
+# list_author = {'Пушкин': 'Евгений Онегин\n' 'Повести Белкина\n',
+#                'Достоевский': 'Преступление и наказание\n' 'Униженные и оскорбленные\n',
+#                'Гоголь': 'Вечера на хуторе близь Диканьки\n' 'Нос\n' 'Тарас Бульба\n'}
+# dop = {'Чехов': 'Скрипка Ротшильда\n', 'Куприн': 'Чудесный доктор\n'}
+# list_author.update(dop)
+# key = input('Введите только фамилию автора\n').lower().capitalize()
+# flag_be = 0
+# for i in list_author:
+#     if key == i:
+#         flag_be = 1
+# if flag_be == 1:
+#     print(list_author[key])
+# else:
+#     print('Простите такого автора в списке нет или вы ввели фамилию некорректно')
+
+
+
+
+
+
+# fruit = {'яблоко': 'apple', 'груша': 'pear', 'ананас': 'pineapple'}
+# strok = input('Введите название(я) фрукта(ов)\n').lower()
+# translate_rus = strok.split()
+# translate_eng = ''
+# for i in range(len(translate_rus)):
+#     flag_be = 0
+#     for key in fruit:
+#         if translate_rus[i] == key:
+#             flag_be = 1
+#             break
+#     if flag_be == 1:
+#         translate_eng += fruit[key] + ' '
+#     else:
+#         translate_eng += 'unknown word' + ' '
+# print(translate_eng)

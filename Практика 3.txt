@@ -1,0 +1,47 @@
+import csv
+from pprint import pprint
+countries = []
+countries_new = []
+with open("countries.csv", 'r', encoding="utf-8") as csvfile:
+    reader = csv.DictReader(csvfile, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
+    while True:
+        countr = next(reader, "End")
+        if countr == "End":
+            break
+        countries.append(countr)
+print("Введите диапозон")
+A=int(input())
+B=int(input())
+for i in range(len(countries)):
+    if int(countries[i].get('Income'))>int(A) and int(countries[i].get('Income'))<int(B):
+        countries_new.append(countries[i])
+with open("countr_new.csv", mode="w", encoding="utf-8", newline="") as w_file:
+    names = ["Country","Health Care","Income","Inflation","Life Expectancy"]
+    file_writer = csv.DictWriter(w_file, delimiter=",", fieldnames=names, quoting=csv.QUOTE_NONNUMERIC)
+    file_writer.writeheader()
+    for countr in countries_new:
+        file_writer.writerow(countr)
+
+
+
+
+
+import csv
+countries = []
+countries_new = []
+with open("countries.csv", 'r', encoding="utf-8") as csvfile:
+    reader = csv.DictReader(csvfile, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
+    while True:
+        countr = next(reader, "End")
+        if countr == "End":
+            break
+        countries.append(countr)
+
+countries_new = sorted(countries, key=lambda d: d['Income'], reverse=True) 
+
+with open("countr_new2.csv", mode="w", encoding="utf-8", newline="") as w_file:
+    names = ["Country","Health Care","Income","Inflation","Life Expectancy"]
+    file_writer = csv.DictWriter(w_file, delimiter=",", fieldnames=names, quoting=csv.QUOTE_NONNUMERIC)
+    file_writer.writeheader()
+    for countr in countries_new:
+        file_writer.writerow(countr)
